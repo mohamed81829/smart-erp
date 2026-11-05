@@ -266,3 +266,71 @@ The module must be tested for:
 - Automatic GL posting.
 - Depreciation recalculation controls.
 - Audit trail completeness.
+# Advanced Fixed Assets Requirements
+
+## 1. Component Accounting
+- Support component-based asset management for assets consisting of significant parts with different useful lives.
+- Each component should have its own acquisition cost, useful life, residual value, depreciation method, and depreciation schedule.
+- Support replacement and derecognition of significant components in accordance with IAS 16.
+
+## 2. Book Depreciation and Tax Depreciation
+- Maintain separate book depreciation and tax depreciation calculations.
+- Allow different depreciation methods, useful lives, rates, and rules for accounting and tax purposes.
+- Maintain tax depreciation schedules independently from accounting depreciation schedules.
+- Support temporary difference calculations and integration with deferred tax accounting under IAS 12.
+
+## 3. Physical Asset Verification
+- Support periodic physical asset verification and reconciliation.
+- Allow barcode and QR code identification.
+- Record verification date, location, custodian, verification result, and discrepancies.
+- Generate reports for missing, relocated, damaged, or unrecorded assets.
+- Support approval and accounting treatment of verification adjustments.
+
+## 4. Asset Insurance Management
+- Maintain insurance policies linked to individual assets or asset groups.
+- Record insurance provider, policy number, coverage amount, premium, start date, and expiry date.
+- Generate alerts for upcoming policy expirations.
+- Track claims and insurance compensation related to damaged or disposed assets.
+
+## 5. Asset Maintenance
+- Provide a maintenance management capability, either within the Fixed Assets module or through a future integration.
+- Track preventive and corrective maintenance activities.
+- Record maintenance costs and distinguish between capital improvements and routine repairs.
+- Allow maintenance history and cost reporting by asset.
+
+## 6. Lease Accounting – IFRS 16
+- Support lease contract registration and management.
+- Maintain lease commencement date, lease term, payment schedule, discount rate, and renewal options.
+- Calculate Right-of-Use (ROU) assets and lease liabilities.
+- Generate lease liability amortization schedules and ROU depreciation schedules.
+- Support lease modifications, reassessments, terminations, and relevant accounting entries in accordance with IFRS 16.
+
+## 7. Changes in Accounting Estimates
+- Support changes in useful life and residual value.
+- Apply revised estimates prospectively based on the asset's current carrying amount and remaining useful life, in accordance with IAS 16 and IAS 8.
+- Preserve previously approved depreciation records and maintain a complete change history.
+
+## 8. Cost Model and Revaluation Model
+- Support both the Cost Model and Revaluation Model in accordance with IAS 16.
+- Allow the applicable measurement model to be configured for eligible asset classes.
+- Maintain revaluation history, valuation date, valuation method, and supporting documents.
+- Calculate and record revaluation gains and losses with the appropriate accounting treatment.
+- Integrate impairment assessment and impairment losses in accordance with IAS 36.
+- Preserve historical asset values and all approved valuation adjustments.
+
+## 9. Reporting and Reconciliation
+- Provide separate reports for book depreciation and tax depreciation.
+- Provide component-level asset reports.
+- Provide asset insurance and maintenance reports.
+- Provide lease accounting schedules and reports.
+- Support reconciliation between the Fixed Assets Register and General Ledger.
+- Provide a complete audit trail for asset acquisitions, transfers, depreciation, revaluation, impairment, and disposal.
+
+## 10. Validation and Testing
+- Test component accounting and component replacement.
+- Test changes in useful life and residual value.
+- Test book versus tax depreciation calculations.
+- Test revaluation and impairment accounting.
+- Test physical verification and asset reconciliation.
+- Test lease accounting calculations and modifications.
+- Ensure that approved historical transactions cannot be modified or deleted.
