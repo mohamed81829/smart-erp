@@ -315,3 +315,100 @@ The module must be tested for:
 - Automatic GL Posting.
 - Employee Data Security.
 - Audit Trail Completeness.
+# Advanced HR and Payroll Requirements
+
+## 1. Employee Document Management
+- Maintain employee documents, including contracts, identification documents, certificates, and other employment records.
+- Support document categories, issue dates, expiry dates, and attachments.
+- Generate alerts for documents approaching expiry.
+- Apply access restrictions to confidential employee documents.
+- Maintain document version history and audit logs.
+
+## 2. Employee History and Effective Dating
+- Maintain a complete history of employee changes, including:
+  - Job title and position.
+  - Department and organizational unit.
+  - Branch and work location.
+  - Reporting manager.
+  - Salary and compensation.
+  - Cost center and project allocation.
+  - Employment status and contract type.
+- Record effective dates for all changes.
+- Preserve historical employee records and prevent unauthorized retroactive modifications.
+- Support future-dated employee changes.
+
+## 3. Budgeted Headcount and Workforce Planning
+- Support approved and budgeted positions by company, branch, and department.
+- Track approved, occupied, vacant, and frozen positions.
+- Compare actual headcount against approved workforce plans.
+- Compare actual payroll costs against budgeted payroll costs.
+- Support headcount and personnel cost forecasts.
+
+## 4. Performance Management
+- Support configurable performance evaluation cycles.
+- Maintain employee objectives, KPIs, evaluation criteria, and review results.
+- Support manager and employee feedback workflows.
+- Maintain training and development plans.
+- Allow approved performance results to be considered in bonus and incentive calculations.
+- Maintain complete evaluation history with restricted access.
+
+## 5. Payroll Reconciliation
+- Provide payroll reconciliation between:
+  - Gross salaries.
+  - Net salaries.
+  - Employee deductions.
+  - Employer contributions.
+  - Tax liabilities.
+  - Social insurance liabilities.
+  - Bank payment files.
+  - General Ledger postings.
+- Identify differences between payroll calculations, payment amounts, and accounting entries.
+- Support payroll approval and reconciliation before final posting.
+- Maintain reconciliation history for each payroll period.
+
+## 6. Retroactive Payroll Adjustments
+- Support retroactive salary increases, allowances, deductions, and other payroll adjustments.
+- Calculate payroll differences for previous periods.
+- Maintain adjustment reasons, effective dates, and approval records.
+- Preserve previously approved payroll results.
+- Post approved retroactive adjustments in the appropriate accounting period according to configurable accounting policies.
+
+## 7. Country-Specific Legal Rules Engine
+- Maintain separate legal and payroll rule configurations for each country.
+- Support effective-dated rules for:
+  - Income tax.
+  - Social insurance.
+  - Tax exemptions and thresholds.
+  - Employer and employee contribution rates.
+  - Minimum wage requirements.
+  - Overtime rules.
+  - Leave entitlements.
+  - End-of-service benefits.
+- Maintain rule versions, effective dates, source references, and approval history.
+- Allow authorized administrators to update legal rules without changing application source code.
+- Support historical payroll recalculation based on the applicable rules for the relevant period.
+- Treat legal and tax rules as configurable data, not hard-coded assumptions.
+
+## 8. Payroll Security and Access Control
+- Apply separate permissions for viewing employee personal data, salary information, payroll calculations, and bank details.
+- Support restricted access by company, branch, department, and employee group.
+- Maintain Maker-Checker controls for sensitive payroll changes.
+- Record all access to and modifications of sensitive payroll information.
+- Prevent unauthorized users from viewing or exporting confidential payroll data.
+
+## 9. Reporting and Integration
+- Provide employee movement, headcount, vacancy, payroll cost, and payroll variance reports.
+- Provide payroll reconciliation and statutory liability reports.
+- Support integration with attendance, leave, loans, advances, benefits, and General Ledger.
+- Support configurable payroll reports by company, branch, department, cost center, and project.
+- Maintain complete audit trails for employee and payroll transactions.
+
+## 10. Validation and Testing
+- Test employee transfers and salary changes with future and historical effective dates.
+- Test budgeted versus actual headcount.
+- Test payroll reconciliation against bank files and General Ledger.
+- Test retroactive payroll adjustments.
+- Test country-specific rules using different effective dates.
+- Test payroll approval and segregation of duties.
+- Test access restrictions for confidential employee information.
+- Ensure approved payroll records remain protected from unauthorized changes.
