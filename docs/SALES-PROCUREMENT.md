@@ -341,3 +341,272 @@ The module must be tested for:
 - Inventory costing updates.
 - Duplicate accounting posting prevention.
 - Audit trail completeness.
+# Additional Sales, Procurement, and Import Management Requirements
+
+## 1. Advanced Sales Management
+
+The Sales module shall support additional commercial management capabilities, including:
+
+- Sales Contracts.
+- Customer Agreements.
+- Sales Return Authorization.
+- Customer Advance Payments.
+- Sales Commission Rules.
+- Sales Targets.
+- Customer Pricing History.
+- Sales Margin Control.
+- Sales Performance Monitoring.
+
+Sales commissions shall be configurable according to sales representatives, products, customers, sales targets, and collection conditions.
+
+Sales margin controls shall allow authorized users to define minimum margin thresholds and approval requirements for exceptional pricing.
+
+## 2. Sales Date and Document Management
+
+The system shall maintain separate dates for different stages of the sales process, including:
+
+- Quotation Date.
+- Sales Order Date.
+- Delivery Date.
+- Invoice Date.
+- Tax Point Date, where applicable.
+- Due Date.
+- Payment Date.
+
+Each date shall be used according to its relevant operational, accounting, and tax purpose.
+
+The system shall support partial deliveries, partial invoicing, backorders, and controlled sales returns.
+
+## 3. Advanced Procurement Management
+
+The Procurement module shall support:
+
+- Supplier Contracts.
+- Purchase Agreements.
+- Supplier Advance Payments.
+- Purchase Price Variance.
+- Three-Way Matching.
+- Purchase Return Authorization.
+- Supplier Evaluation.
+- Supplier Performance Monitoring.
+
+Three-Way Matching shall compare:
+
+- Purchase Order (PO).
+- Goods Received Note (GRN).
+- Supplier Invoice.
+
+The system shall support configurable tolerances for quantity and price differences.
+
+Exceptions shall be subject to approval before invoice processing or payment, according to company policy.
+
+## 4. Supplier and Purchase Controls
+
+The system shall provide configurable controls for:
+
+- Supplier Approval.
+- Purchase Approval Limits.
+- Purchase Price Tolerance.
+- Budget Availability.
+- Supplier Credit Terms.
+- Duplicate Purchase Invoice Detection.
+- Purchase Order Amendments.
+- Partial Goods Receipt.
+- Supplier Advance Settlement.
+
+All purchase amendments and approvals shall be recorded in the audit trail.
+
+## 5. Import Shipment Tracking
+
+The Import Management module shall provide shipment tracking capabilities, including:
+
+- Shipment Reference.
+- Supplier.
+- Purchase Order Reference.
+- Import File Reference.
+- Carrier.
+- Vessel or Flight Number.
+- Container Number.
+- Bill of Lading or Air Waybill Reference.
+- Port of Loading.
+- Port of Discharge.
+- Estimated Time of Departure (ETD).
+- Estimated Time of Arrival (ETA).
+- Actual Departure and Arrival Dates.
+- Demurrage and Detention Tracking.
+- Shipment Status.
+
+The system shall provide shipment milestone tracking and alerts for important dates and delays.
+
+## 6. Import Payment Allocation
+
+The system shall support import-related payments, including:
+
+- Advance Payments.
+- Partial Payments.
+- Letters of Credit (LC) Payments.
+- Foreign Bank Transfers.
+- Supplier Settlements.
+- Freight and Insurance Payments.
+- Customs and Clearance Payments.
+
+Payments shall be linked to their relevant suppliers, import files, purchase invoices, and banking transactions.
+
+The system shall support allocation and reconciliation of payments against outstanding import obligations.
+
+## 7. Import Cost Management
+
+The system shall maintain detailed estimated and actual import cost records.
+
+Cost categories may include:
+
+- Purchase Price.
+- International Freight.
+- Marine or Cargo Insurance.
+- Customs Duties.
+- Customs Clearance.
+- Port Charges.
+- Transportation.
+- Bank Charges.
+- Inspection Fees.
+- Other Eligible Import Expenses.
+
+The system shall provide comparisons between:
+
+- Estimated Costs.
+- Actual Costs.
+- Budgeted Costs.
+- Cost Variances.
+
+Each cost shall retain its original document reference, currency, amount, and allocation method.
+
+## 8. Landed Cost Calculation and Accounting
+
+The system shall support configurable landed cost allocation methods, including:
+
+- Quantity.
+- Weight.
+- Volume.
+- Item Value.
+- Equal Allocation.
+- Manual Allocation.
+
+The landed cost process shall apply the following accounting and costing controls:
+
+- Only eligible costs shall be capitalized into inventory.
+- Recoverable taxes shall be excluded from inventory cost.
+- Expenses that do not qualify for capitalization shall be recognized appropriately.
+- Import costs shall be allocated across eligible received items.
+- Estimated costs shall be compared with actual costs.
+- Additional costs received after the initial allocation shall be processed through controlled cost adjustments.
+
+Where part of the imported inventory has already been sold, late landed cost adjustments shall be allocated appropriately between remaining inventory and Cost of Goods Sold, according to the applicable costing policy.
+
+Historical posted inventory movements must not be silently modified.
+
+## 9. Customs and Regulatory Documentation
+
+The Import Management module shall support configurable documentation requirements according to country, transaction type, and applicable regulations.
+
+Examples include:
+
+- Commercial Invoice.
+- Packing List.
+- Bill of Lading.
+- Air Waybill.
+- Certificate of Origin.
+- Insurance Certificate.
+- Customs Declaration.
+- Import Form 4.
+- Letters of Credit Documents.
+- Bank Transfer Documents.
+- Customs Clearance Documents.
+
+Each document shall support:
+
+- Document Reference.
+- Issue Date.
+- Expiry Date, where applicable.
+- Issuing Authority.
+- Related Supplier or Shipment.
+- Attachment.
+- Verification Status.
+- Approval History.
+
+Regulatory requirements shall be configurable and effective-dated rather than permanently hardcoded.
+
+## 10. GRNI and Goods Receipt Accounting
+
+The system shall support the accounting treatment of goods received before supplier invoices are recorded.
+
+Where applicable, the initial receipt shall generate:
+
+- Debit: Inventory.
+- Credit: Goods Received Not Invoiced (GRNI).
+
+When the supplier invoice is recorded, the GRNI balance shall be cleared against the relevant supplier liability, with applicable differences and taxes recognized according to accounting policies.
+
+The system shall support partial invoice matching and GRNI reconciliation.
+
+## 11. Sales and Procurement Integration
+
+The Sales, Procurement, Inventory, Accounts Receivable, Accounts Payable, Treasury, and General Ledger modules shall operate through controlled integrations.
+
+The following principles shall apply:
+
+- Sales invoices shall update Accounts Receivable and the General Ledger as applicable.
+- Goods deliveries shall update inventory quantities and costs.
+- Purchase invoices shall update Accounts Payable and the General Ledger.
+- Goods receipts shall update inventory and GRNI where applicable.
+- Customer receipts and supplier payments shall be managed through the appropriate financial modules.
+- Import landed costs shall update inventory valuation and related accounting records.
+- Each integrated transaction shall retain its source reference and posting status.
+
+The same business transaction must not be recorded twice in different modules.
+
+## 12. Sales and Procurement Reporting
+
+The system shall provide reports including:
+
+- Sales Analysis.
+- Sales by Customer.
+- Sales by Product.
+- Sales by Sales Representative.
+- Sales Margin Analysis.
+- Sales Target Achievement.
+- Outstanding Sales Orders.
+- Purchase Analysis.
+- Purchases by Supplier.
+- Purchase Price Variance.
+- Outstanding Purchase Orders.
+- Goods Received Not Invoiced.
+- Supplier Performance.
+- Import Shipment Tracking.
+- Estimated versus Actual Import Costs.
+- Landed Cost Analysis.
+- Import Payment Status.
+
+Reports shall support filtering by tenant, company, branch, period, customer, supplier, product, and transaction status.
+
+## 13. Sales, Procurement, and Import Testing
+
+Testing shall cover:
+
+- Partial Sales Deliveries.
+- Partial Purchase Receipts.
+- Sales Return Authorization.
+- Purchase Return Authorization.
+- Sales Margin Approval.
+- Purchase Price Variance.
+- Three-Way Matching.
+- Customer and Supplier Advances.
+- Import Shipment Tracking.
+- Demurrage and Detention.
+- Import Cost Allocation.
+- Late Landed Cost Adjustments.
+- Recoverable Tax Exclusion.
+- Import Payment Reconciliation.
+- GRNI Reconciliation.
+- Foreign Currency Settlement.
+- Duplicate Invoice and Expense Prevention.
+- Inventory and General Ledger Integration.
