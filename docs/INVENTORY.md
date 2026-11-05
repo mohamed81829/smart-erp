@@ -315,3 +315,230 @@ The module must be tested for:
 - Landed Cost integration.
 - Automatic GL posting.
 - Concurrent inventory transactions.
+# Additional Inventory Management Requirements
+
+## 1. Inventory Movement and Cost Layer Tracking
+
+The system shall maintain a detailed and traceable record of every inventory movement.
+
+Each inventory movement shall include, where applicable:
+
+- Movement ID.
+- Tenant ID.
+- Company ID.
+- Branch ID.
+- Warehouse ID.
+- Item ID.
+- Transaction Type.
+- Transaction Date.
+- Source Document Reference.
+- Quantity In.
+- Quantity Out.
+- Unit Cost.
+- Total Cost.
+- Currency.
+- Valuation Method.
+- Resulting Quantity Balance.
+- Resulting Inventory Value.
+- Created By and Approved By.
+
+The system shall preserve the historical cost layers required by the selected inventory valuation method.
+
+Inventory quantities and inventory values must be maintained separately to ensure accurate quantity and financial valuation reporting.
+
+## 2. Inventory Accounting Integration
+
+The Inventory module shall support configurable integration with the General Ledger.
+
+Relevant accounting accounts shall include:
+
+- Inventory Control Account.
+- Goods Received Not Invoiced (GRNI).
+- Inventory in Transit.
+- Inventory Write-down.
+- Inventory Revaluation.
+- Purchase Price Variance.
+- Production Variance.
+- Work in Progress (WIP).
+
+The applicable accounts shall be configurable by company, inventory category, transaction type, and other relevant dimensions.
+
+All inventory accounting entries must retain references to their originating inventory transactions.
+
+## 3. Inventory Impairment and Net Realizable Value
+
+The system shall support the identification and valuation of:
+
+- Damaged Inventory.
+- Obsolete Inventory.
+- Slow-Moving Inventory.
+- Expired Inventory.
+- Excess Inventory.
+
+The system shall support Net Realizable Value (NRV) assessment in accordance with IAS 2.
+
+The functionality shall include:
+
+- NRV Calculation.
+- Inventory Write-down.
+- Write-down Reversal where permitted.
+- Supporting Documentation.
+- Approval Workflow.
+- Inventory Valuation Reports.
+
+Inventory write-downs and reversals shall generate appropriate accounting entries through the General Ledger integration.
+
+## 4. Inventory Ownership Management
+
+The system shall distinguish between inventory physically stored in a warehouse and inventory legally owned by the company.
+
+Supported ownership types shall include:
+
+- Company-Owned Inventory.
+- Supplier-Owned Inventory.
+- Customer-Owned Inventory.
+- Consignment Inventory.
+- Third-Party Warehouse Inventory.
+
+Inventory valuation and financial reporting shall consider ownership status to prevent the recognition of inventory that does not belong to the company.
+
+The system shall maintain ownership references for all relevant receipts, issues, transfers, and adjustments.
+
+## 5. Warehouse Transfer Workflow
+
+The system shall support a controlled workflow for transfers between warehouses, branches, and storage locations.
+
+Transfer statuses shall include:
+
+- Draft.
+- Submitted.
+- Approved.
+- Dispatched.
+- Partially Received.
+- Fully Received.
+- Closed.
+- Cancelled.
+
+The system shall support:
+
+- Transfer Requests.
+- Approval Controls.
+- Dispatch Confirmation.
+- Partial Receipts.
+- Receiving Confirmation.
+- Transfer Variance Investigation.
+- In-Transit Inventory Tracking.
+
+Inventory quantities shall be updated according to the actual dispatch and receipt stages.
+
+## 6. Inventory Cost Adjustment and Revaluation
+
+The system shall support controlled inventory cost adjustments and revaluation procedures.
+
+These shall include:
+
+- Cost Revaluation.
+- Purchase Cost Adjustments.
+- Landed Cost Adjustments.
+- Standard Cost Updates.
+- Inventory Write-downs.
+- Inventory Write-down Reversals.
+- Retroactive Cost Adjustments.
+
+All cost adjustments shall retain their effective dates, source references, reasons, approvals, and accounting entries.
+
+Posted inventory movements must not be silently modified.
+
+Where a cost adjustment affects inventory that has already been sold or consumed, the system shall calculate the appropriate allocation between remaining inventory and the related expense or cost of sales, according to the applicable valuation policy.
+
+## 7. Inventory Valuation Methods
+
+The system shall support the following valuation methods:
+
+- FIFO.
+- Moving Weighted Average.
+- Standard Cost.
+
+The valuation method shall be configurable according to the applicable company and inventory policy, subject to consistent application for the relevant inventory classification.
+
+Historical valuation records shall be preserved.
+
+Any approved change to an inventory valuation method shall follow controlled effective-date and accounting procedures.
+
+## 8. Manufacturing and Work in Progress Integration
+
+The Inventory module shall integrate with Manufacturing Management.
+
+The integration shall support:
+
+- Raw Material Issues.
+- Material Returns.
+- Work in Progress Transfers.
+- Finished Goods Receipts.
+- Scrap and Waste Movements.
+- Production Returns.
+- Production Cost Adjustments.
+
+Materials issued to production shall be transferred to Work in Progress (WIP) where applicable rather than being automatically recognized as direct expenses.
+
+Finished goods shall be received into inventory based on approved production costing results.
+
+## 9. Inventory Reconciliation
+
+The system shall provide reconciliation between inventory subledger records and the General Ledger.
+
+Reconciliation shall cover:
+
+- Quantity Balances.
+- Inventory Valuation.
+- Inventory Control Accounts.
+- GRNI Balances.
+- Inventory in Transit.
+- WIP Balances.
+- Inventory Adjustments.
+- Cost Variances.
+
+Differences shall be identifiable and traceable to the underlying transactions.
+
+## 10. Inventory Reporting
+
+The system shall provide reports including:
+
+- Stock on Hand.
+- Stock Movement Register.
+- Inventory Valuation.
+- Inventory Aging.
+- Slow-Moving Inventory.
+- Obsolete and Damaged Inventory.
+- Batch and Serial Number Tracking.
+- Expiry Date Reports.
+- Warehouse Transfer Reports.
+- In-Transit Inventory.
+- Inventory Cost Adjustment Report.
+- Inventory Write-down Report.
+- NRV Assessment Report.
+- Inventory-to-GL Reconciliation.
+
+Reports shall support filtering by tenant, company, branch, warehouse, item, category, batch, serial number, and reporting period.
+
+## 11. Inventory Validation and Testing
+
+The system shall validate:
+
+- Negative Stock Restrictions.
+- Zero Stock Transactions.
+- Item and Warehouse Validity.
+- Batch and Serial Number Controls.
+- Expiry Date Restrictions.
+- Inventory Ownership.
+- Cost Layer Accuracy.
+- Partial Warehouse Transfers.
+- Inventory Valuation Calculations.
+- NRV Write-down and Reversal.
+- Landed Cost Adjustments.
+- WIP Integration.
+- Inventory-to-GL Reconciliation.
+- Historical Inventory Valuation Reconstruction.
+- Duplicate Transaction Prevention.
+
+All inventory transactions shall be subject to appropriate authorization, audit logging, and accounting controls.
