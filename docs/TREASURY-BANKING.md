@@ -323,3 +323,97 @@ The module must be tested for:
 - Cash flow forecasting.
 - Duplicate posting prevention.
 - Audit trail completeness.
+# Advanced Treasury and Banking Requirements
+
+## 1. Payment Requests and Payment Management
+- Support Payment Requests with configurable approval workflows.
+- Separate Payment Requests, Payment Vouchers, Bank Transactions, and Invoice Settlements.
+- Support payment batches for processing multiple supplier payments together.
+- Allow one payment to be allocated across multiple invoices.
+- Support partial payments, advance payments, and unallocated payment balances.
+- Provide supplier payment proposals based on due dates, payment terms, and available cash.
+- Support customer collection follow-up and collection forecasts.
+- Prevent duplicate payments through configurable validation rules.
+
+## 2. Advanced Cheque Management
+- Support cheque book registration and cheque number range control.
+- Track issued cheques that have not yet been delivered.
+- Support post-dated cheques, deposit slips, cheque endorsement, and custody tracking.
+- Support stop-payment requests and cheque cancellation with proper authorization.
+- Maintain a complete cheque lifecycle and transaction history.
+- Link each cheque to the relevant customer, supplier, bank account, and accounting entries.
+
+## 3. Advanced Bank Reconciliation
+- Support importing bank statements from Excel, CSV, and supported bank formats.
+- Provide automatic matching based on amount, date, reference number, and transaction details.
+- Support one-to-many and many-to-one transaction matching.
+- Allow configurable matching tolerances.
+- Identify duplicate, unmatched, and partially matched transactions.
+- Provide tools to investigate and resolve reconciliation differences.
+- Prevent reconciliation of transactions belonging to closed periods without authorized reopening.
+- Do not generate accounting entries automatically for unexplained differences without classification and approval.
+
+## 4. Loan and Financing Management
+- Support loans with fixed or floating interest rates.
+- Maintain principal, interest, payment schedules, grace periods, and maturity dates.
+- Support early repayment, rescheduling, and restructuring.
+- Track commitment fees, unused facility fees, and other financing charges.
+- Support loan covenant monitoring and alerts.
+- Separate current and non-current loan liabilities.
+- Generate principal and interest schedules with automatic accounting integration.
+
+## 5. Cash Flow Forecasting
+- Maintain actual and forecast cash flow separately.
+- Generate forecasts based on customer collections, supplier payments, payroll, loans, taxes, and planned investments.
+- Support configurable forecast periods and scenarios, including Base, Optimistic, and Pessimistic.
+- Identify expected cash shortages and surplus liquidity.
+- Record forecast sources, assumptions, and confidence levels.
+- Compare actual cash flows against forecasts and report variances.
+
+## 6. Letter of Credit (LC) Management
+- Maintain LC applications, issuance, amendments, utilization, and settlement.
+- Track LC amount, available balance, expiry date, bank margin, and outstanding exposure.
+- Support partial utilization and multiple shipments under one LC.
+- Track shipping documents and document discrepancies.
+- Generate expiry and document-submission alerts.
+- Track bank charges, commissions, and other LC-related expenses.
+- Support margin release and settlement of LC liabilities.
+- Provide LC exposure and cost analysis reports.
+
+## 7. Foreign Currency and Exchange Differences
+- Support foreign currency bank accounts and transactions.
+- Calculate realized and unrealized foreign exchange gains and losses.
+- Support foreign currency revaluation at period-end.
+- Track exchange differences arising from bank conversions and settlements.
+- Maintain historical exchange rates and their sources.
+- Integrate exchange differences with the General Ledger.
+
+## 8. Payment Security and Internal Controls
+- Implement Maker-Checker controls for payment preparation and approval.
+- Support dual authorization for payments above configurable limits.
+- Apply approval limits based on user, company, currency, and transaction amount.
+- Support beneficiary verification and controlled bank account changes.
+- Maintain payment file generation and execution confirmation where supported.
+- Record all payment approvals, rejections, cancellations, and modifications.
+- Prevent the same user from preparing and approving restricted transactions where segregation of duties is required.
+
+## 9. Accounting and Module Integration
+- Integrate Treasury with AR/AP, General Ledger, Import Management, Payroll, and Fixed Assets.
+- Ensure that Treasury manages cash and bank movements, while AR/AP remains responsible for customer and supplier invoices.
+- Support payment allocation and settlement without creating duplicate invoices or accounting transactions.
+- Incoming cheques must not be treated as available bank cash until collected.
+- Separate loan principal repayments from interest expenses.
+- Record bank transfer charges and foreign exchange differences correctly.
+- Maintain reconciliation between bank balances, cash accounts, and the General Ledger.
+
+## 10. Reporting and Testing
+- Provide cash position, bank balance, cheque status, payment forecast, loan schedule, and LC exposure reports.
+- Provide bank reconciliation statements and outstanding transaction reports.
+- Test partial payments, payment batches, and unallocated balances.
+- Test cheque book controls and issued-but-undelivered cheques.
+- Test complex bank reconciliation scenarios and duplicate detection.
+- Test loan rescheduling and early repayment.
+- Test foreign currency revaluation and settlement differences.
+- Test LC utilization, expiry alerts, and margin release.
+- Test Maker-Checker controls and duplicate payment prevention.
+- Ensure that all approved financial transactions maintain a complete audit trail.
