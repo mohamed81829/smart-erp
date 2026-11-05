@@ -236,209 +236,250 @@ The module must be tested for:
 ## 1. Configurable Journal Approval Workflow
 
 The system shall support configurable journal approval workflows based on:
+# Additional Accounts Receivable and Accounts Payable Requirements
 
-- Company and Branch.
-- Journal Type.
-- Transaction Amount.
-- Journal Source.
-- User Role and Permissions.
-- Account Categories.
-- Other configurable business conditions.
+## 1. Opening Balances Management
 
-Approval workflows shall support multiple approval levels and financial approval limits.
+The system shall support opening balances for customers and suppliers during initial system implementation and subsequent controlled balance adjustments.
 
-The system shall enforce segregation of duties where required, preventing users from approving their own transactions when the applicable policy prohibits it.
+Opening balances shall include:
 
-## 2. Journal Numbering Management
+- Customer or Supplier Reference.
+- Original Invoice Number.
+- Invoice Date.
+- Due Date.
+- Original Currency.
+- Outstanding Amount.
+- Functional Currency Amount.
+- Exchange Rate, where applicable.
+- Opening Balance Reference.
 
-The system shall support configurable journal numbering sequences.
+The system shall support detailed outstanding invoice balances rather than relying only on a single summarized balance.
 
-Numbering configurations may include:
+Opening balances must be linked to the appropriate control accounts and validated against the General Ledger.
 
-- Company.
-- Fiscal Year.
-- Journal Type.
-- Document Prefix.
-- Sequence Number.
+## 2. Customer and Supplier Statement Reconciliation
 
-Journal numbers must remain unique within their defined scope.
+The system shall provide customer and supplier statement reconciliation capabilities.
 
-The numbering mechanism must safely handle concurrent transactions and prevent duplicate numbers.
+The reconciliation process shall support:
 
-## 3. Accounting Period Management
+- Importing statements from Excel and CSV files.
+- Matching transactions by document number, reference, amount, and date.
+- Identifying missing transactions.
+- Identifying unmatched payments and invoices.
+- Detecting duplicate transactions.
+- Recording reconciliation differences.
+- Assigning investigation responsibility.
+- Attaching supporting documents.
+- Recording reconciliation status and approval history.
 
-The system shall support the following accounting period statuses:
+Reconciliation results shall not automatically create accounting adjustments without appropriate validation and authorization.
 
-- Open.
-- Soft Closed.
-- Hard Closed.
+## 3. Discount Management
 
-The system shall provide configurable restrictions for each status.
+The system shall support configurable discount types, including:
 
-Reopening a closed period shall require appropriate authorization and shall be recorded in the audit trail.
+- Cash Discount.
+- Early Payment Discount.
+- Trade Discount.
+- Discount on Invoice.
+- Discount on Settlement.
+- Volume-Based Discount.
 
-Posting dates and transaction dates shall be validated against the applicable fiscal year and accounting period.
+Discount configurations shall support:
 
-## 4. Journal Sources and Automatic Posting
+- Discount Percentage or Fixed Amount.
+- Eligibility Conditions.
+- Validity Period.
+- Customer or Supplier Classification.
+- Payment Terms.
+- Approval Limits.
+- Applicable Tax Treatment.
 
-The General Ledger shall support manual and automatically generated journals from integrated modules, including:
+The accounting and tax treatment of discounts shall be configurable according to applicable accounting standards and local tax regulations.
 
-- Sales.
-- Procurement.
-- Accounts Receivable.
-- Accounts Payable.
-- Inventory.
-- Treasury and Banking.
-- Import Management.
-- Fixed Assets.
-- Manufacturing.
-- Human Resources and Payroll.
-- Foreign Exchange Revaluation.
-- Intercompany Transactions.
+## 4. Cheque Integration
 
-Each automatically generated journal must retain its original source module, transaction reference, and supporting document references.
+Customer receipts and supplier payments shall integrate with the Treasury and Banking module for cheque management.
 
-The system shall prevent duplicate journal generation from the same source transaction.
+The integration shall support:
 
-## 5. Journal Status and Lifecycle Management
+- Incoming Cheques.
+- Outgoing Cheques.
+- Post-Dated Cheques.
+- Cheque Deposit.
+- Cheque Collection.
+- Cheque Clearance.
+- Bounced Cheques.
+- Cancelled Cheques.
+- Endorsed Cheques.
 
-The system shall support configurable journal lifecycle statuses, including:
+Cheque status changes shall be reflected in the relevant customer or supplier balances and treasury records without creating duplicate accounting entries.
 
-- Draft.
-- Submitted.
-- Approved.
-- Rejected.
-- Posted.
-- Reversed.
+## 5. Customer and Supplier Balance Offset
 
-The required workflow may vary according to journal type and company configuration.
+The system shall support controlled offsetting between customer and supplier balances when the same business partner acts in both capacities.
 
-All status changes shall be recorded with the responsible user, date, time, and relevant comments.
+The process shall include:
 
-## 6. Journal Validation Rules
+- Verification of the business partner's customer and supplier accounts.
+- Selection of eligible outstanding balances.
+- Offset amount validation.
+- Authorization based on configured approval rules.
+- Generation of the appropriate offset transaction.
+- Audit trail and supporting documentation.
 
-Before posting, the system shall validate:
+Offsetting shall not be performed automatically without the required authorization and accounting validation.
 
-- Total debit equals total credit in the functional currency.
-- All accounts are active and allow posting.
-- The accounting period is open.
-- Required analytical dimensions are provided.
-- Currency and exchange rate information is valid.
-- Company and branch access is authorized.
-- Required approvals have been completed.
-- The source transaction has not already been posted.
-- All mandatory journal information is available.
+## 6. Expected Credit Loss Management
 
-Invalid journals must not be posted.
+The system shall support Expected Credit Loss (ECL) management in accordance with IFRS 9.
 
-## 7. Posted Journal Protection
+The functionality shall include:
 
-Posted journals shall be immutable.
+- Configurable Provision Matrix.
+- Aging-Based Assessment.
+- Historical Loss Data.
+- Forward-Looking Information.
+- Customer Risk Classification.
+- Expected Credit Loss Calculation.
+- Provision and Reversal Journals.
+- ECL Reporting.
 
-The system shall not allow direct modification or deletion of posted journal headers or lines.
+The methodology and assumptions shall be configurable according to the applicable accounting framework and company policy.
 
-Corrections shall be processed through:
+## 7. Payment and Receipt Allocation
 
-- Reversal Journals.
-- Adjustment Journals.
-- Linked Correction Transactions.
+The system shall maintain a clear separation between invoices, payments or receipts, and their allocations.
 
-The original journal must remain available for audit purposes, with a clear reference to the related correction or reversal.
+The following principles shall apply:
 
-## 8. Multi-Currency Journal Processing
+- A single payment may be allocated to multiple invoices.
+- A single invoice may be settled through multiple payments.
+- Partial settlements shall be supported.
+- Unallocated payment balances shall be maintained.
+- Payments and receipts may remain temporarily unallocated.
+- Advance payments shall be tracked separately until settlement.
+- Allocation changes shall be subject to authorization and audit logging.
 
-The journal structure shall support:
+The system shall prevent duplicate allocations and ensure that customer and supplier balances remain accurate.
+
+## 8. Advance Payments and Settlement
+
+The system shall support customer advances and supplier advances.
+
+The functionality shall include:
+
+- Advance Payment Requests.
+- Advance Receipts and Payments.
+- Advance Allocation to Invoices.
+- Partial Advance Settlement.
+- Unallocated Advance Balances.
+- Advance Refunds.
+- Advance Aging and Reporting.
+
+Advance balances shall be linked to the relevant business partner and accounting records.
+
+## 9. Foreign Currency and Exchange Differences
+
+Customer and supplier transactions shall support foreign currency processing.
+
+The system shall maintain:
 
 - Transaction Currency.
 - Functional Currency.
+- Original Transaction Amount.
+- Outstanding Foreign Currency Amount.
 - Exchange Rate.
-- Exchange Rate Date.
-- Foreign Currency Debit and Credit.
-- Functional Currency Debit and Credit.
-- Currency Precision.
-- Rounding Differences.
+- Settlement Exchange Rate.
+- Realized Exchange Differences.
+- Unrealized Exchange Differences, where applicable.
 
-The system shall calculate foreign currency differences according to the applicable accounting rules.
+Foreign currency revaluation and settlement differences shall be processed through the appropriate General Ledger accounts.
 
-Historical exchange rates used in posted transactions must remain preserved.
+Historical transaction exchange rates must remain unchanged.
 
-## 9. Atomic Journal Posting and Concurrency Control
+## 10. Intercompany Customer and Supplier Transactions
 
-Journal posting shall be executed within an atomic database transaction.
+The system shall support transactions between companies belonging to the same group.
 
-The system must ensure that:
+The functionality shall include:
 
-- Either the complete journal is posted successfully or no posting takes place.
-- Partial journal posting is not permitted.
-- Concurrent posting requests are safely controlled.
-- Duplicate posting requests are rejected or handled idempotently.
-- Failed posting operations are rolled back.
-- Journal numbering remains unique under concurrent processing.
+- Intercompany Customer and Supplier Identification.
+- Intercompany Invoices.
+- Intercompany Payments.
+- Intercompany Balance Matching.
+- Difference Identification.
+- Intercompany Reconciliation.
+- Consolidation References.
 
-## 10. General Ledger Reporting
+Intercompany transactions shall maintain links to the originating and receiving companies and shall support the group's consolidation and elimination procedures.
 
-The General Ledger shall provide configurable reports, including:
+## 11. Customer Credit Management
 
-- Journal Register.
-- General Ledger.
-- Account Statement.
-- Trial Balance.
-- Detailed Trial Balance.
-- Opening Balance, Period Movements, and Closing Balance.
-- Cost Center Reports.
-- Department Reports.
-- Branch Reports.
-- Project Reports.
-- Multi-Currency Account Statements.
-- Posted and Unposted Journal Reports.
+The system shall support configurable customer credit controls, including:
 
-Reports shall support filtering by tenant, company, branch, fiscal year, period, account, currency, journal type, source, and status, subject to user permissions.
+- Credit Limits.
+- Credit Periods.
+- Outstanding Balance Monitoring.
+- Overdue Invoice Monitoring.
+- Credit Hold.
+- Credit Limit Override.
+- Approval-Based Credit Exceptions.
 
-## 11. Audit Trail and Posting History
+Credit checks shall be integrated with the Sales module and shall follow company-specific policies.
 
-The system shall maintain a complete history of journal activities, including:
+## 12. Customer and Supplier Aging
 
-- Journal Creation.
-- Journal Modification before posting.
-- Submission.
-- Approval and Rejection.
-- Posting.
-- Reversal.
-- Period Reopening.
-- Changes to journal configurations.
+The system shall provide configurable aging analysis based on:
 
-The audit trail shall identify the user, timestamp, action, and relevant record references.
+- Invoice Date.
+- Due Date.
+- Outstanding Balance.
+- Aging Periods.
+- Currency.
+- Company and Branch.
+- Customer or Supplier.
 
-## 12. General Ledger Integration and Reconciliation
+Aging periods shall be configurable rather than fixed in the application.
 
-The General Ledger shall provide reconciliation capabilities with integrated subledger modules.
+## 13. Reconciliation and Reporting
 
-These shall include:
+The module shall provide reports including:
 
-- Accounts Receivable to GL Reconciliation.
-- Accounts Payable to GL Reconciliation.
-- Inventory to GL Reconciliation.
-- Fixed Assets to GL Reconciliation.
-- Payroll to GL Reconciliation.
-- Treasury and Bank to GL Reconciliation.
-- Intercompany Balance Reconciliation.
+- Customer Statement.
+- Supplier Statement.
+- Customer Aging Report.
+- Supplier Aging Report.
+- Outstanding Invoice Report.
+- Advance Payment Report.
+- Unallocated Payment Report.
+- Credit Limit Utilization.
+- Customer and Supplier Balance Reconciliation.
+- ECL Provision Report.
+- Foreign Currency Balance Report.
+- Intercompany Balance Report.
 
-Reconciliation reports shall identify differences and provide references to the underlying transactions.
+All reports shall support appropriate organizational and user access restrictions.
 
-## 13. General Ledger Testing Requirements
+## 14. Accounts Receivable and Accounts Payable Testing
 
 Testing shall cover:
 
-- Balanced and unbalanced journals.
-- Multi-currency journals.
-- Exchange rate differences.
-- Closed accounting periods.
-- Approval workflow restrictions.
-- Segregation of duties.
-- Duplicate journal prevention.
-- Journal reversal and adjustment.
-- Concurrent journal numbering.
-- Atomic posting and rollback.
-- Automatic journals from integrated modules.
-- Subledger-to-GL reconciliation.
-- Audit trail completeness.
+- Opening Balance Validation.
+- Partial Payments and Receipts.
+- Multiple Invoice Allocation.
+- Unallocated Payments.
+- Advance Settlement.
+- Discount Calculations.
+- Customer and Supplier Offset.
+- Cheque Integration.
+- Foreign Currency Settlement.
+- Exchange Difference Calculation.
+- ECL Provision and Reversal.
+- Credit Limit Restrictions.
+- Statement Reconciliation.
+- Intercompany Transactions.
+- Subledger-to-General Ledger Reconciliation.
+- Duplicate Transaction and Allocation Prevention.
